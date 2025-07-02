@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Decision Entry</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 600px; margin: auto; }
+        input, select, textarea { width: 100%; padding: 8px; margin-top: 6px; }
+        button { margin-top: 12px; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h2>Enter Credit Decision</h2>
+    <form action="/submit" method="POST">
+        <label>Customer Name</label>
+        <input type="text" name="customer_name" required>
+
+        <label>Vehicle Make</label>
+        <input type="text" name="vehicle_make" required>
+
+        <label>Vehicle Model</label>
+        <input type="text" name="vehicle_model" required>
+
+        <label>Vehicle Year</label>
+        <input type="number" name="vehicle_year" required>
+
+        <label>VIN</label>
+        <input type="text" name="vin" required>
+
+        <label>Credit Decision</label>
+        <select name="credit_decision" required>
+            <option value="Approved">Approved</option>
+            <option value="Declined">Declined</option>
+            <option value="Pending">Pending</option>
+        </select>
+
+        <label>Credit Limit ($)</label>
+        <input type="number" name="credit_limit" step="0.01" required>
+
+        <label>Conditions / Notes</label>
+        <textarea name="notes" rows="3"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
