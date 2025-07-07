@@ -14,17 +14,53 @@
         <label>Customer Name</label>
         <input type="text" name="customer_name" required>
 
+        <label>Vendor Location</label>
+        <input type="text" name="vendor_location" required>
+
+        <label>Salesperson</label>
+        <input type="text" name="salesperson" required>
+
+        <label>Lease Rep</label>
+        <input type="text" name="lease_rep" required>
+
+        <label>Finance Type</label>
+        <input type="text" name="finance_type" required>
+
+        <label>Vehicle Type</label>
+        <input type="text" name="vehicle_type" required>
+
+        <label>Vehicle Year</label>
+        <input type="number" name="vehicle_year" required>
+
         <label>Vehicle Make</label>
         <input type="text" name="vehicle_make" required>
 
         <label>Vehicle Model</label>
         <input type="text" name="vehicle_model" required>
 
-        <label>Vehicle Year</label>
-        <input type="number" name="vehicle_year" required>
+        <label>Sale Price</label>
+        <input type="number" name="sale_price" step="0.01" required>
 
-        <label>VIN</label>
-        <input type="text" name="vin" required>
+        <label>Term</label>
+        <input type="number" name="term" required>
+
+        <label>Rate (%)</label>
+        <input type="number" name="rate" step="0.01" required>
+
+        <label>Down Payment</label>
+        <input type="number" name="down_payment" step="0.01" required>
+
+        <label>Security Deposit</label>
+        <input type="number" name="security_deposit" step="0.01" required>
+
+        <label>Residual Value</label>
+        <input type="number" name="residual_value" step="0.01" required>
+
+        <label>Payment</label>
+        <input type="number" name="payment" step="0.01" required>
+
+        <label>Cost of Funds</label>
+        <input type="number" name="cost_of_funds" step="0.01" required>
 
         <label>Credit Decision</label>
         <select name="credit_decision" required>
@@ -33,10 +69,7 @@
             <option value="Pending">Pending</option>
         </select>
 
-        <label>Credit Limit ($)</label>
-        <input type="number" name="credit_limit" step="0.01" required>
-
-        <label>Conditions / Notes</label>
+        <label>Notes</label>
         <textarea name="notes" rows="3"></textarea>
 
         <button type="submit">Submit</button>

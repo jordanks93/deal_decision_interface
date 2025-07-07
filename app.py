@@ -18,12 +18,23 @@ def index():
 def submit():
     data = [
         request.form['customer_name'],
+        request.form['vendor_location'],
+        request.form['salesperson'],
+        request.form['lease_rep'],
+        request.form['finance_type'],
+        request.form['vehicle_type'],
+        request.form['vehicle_year'],
         request.form['vehicle_make'],
         request.form['vehicle_model'],
-        request.form['vehicle_year'],
-        request.form['vin'],
+        request.form['sale_price'],
+        request.form['term'],
+        request.form['rate'],
+        request.form['down_payment'],
+        request.form['security_deposit'],
+        request.form['residual_value'],
+        request.form['payment'],
+        request.form['cost_of_funds'],
         request.form['credit_decision'],
-        request.form['credit_limit'],
         request.form['notes']
     ]
     sheet.append_row(data)
