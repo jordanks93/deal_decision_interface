@@ -17,9 +17,10 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     data = [
+        request.form['date'],
         request.form['customer_name'],
         request.form['vendor_location'],
-        request.form['salesperson'],
+        request.form['salesperson'], # do we need this?
         request.form['lease_rep'],
         request.form['finance_type'],
         request.form['vehicle_type'],
@@ -30,8 +31,8 @@ def submit():
         request.form['term'],
         request.form['rate'],
         request.form['down_payment'],
-        request.form['security_deposit'],
-        request.form['residual_value'],
+        request.form['security_deposit'], # do we need this?
+        request.form['residual_value'], # do we need this?
         request.form['payment'],
         request.form['cost_of_funds'],
         request.form['credit_decision'],
