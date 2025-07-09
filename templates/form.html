@@ -3,70 +3,171 @@
 <head>
     <title>Credit Decision Entry</title>
     <style>
-        body { font-family: Arial; padding: 20px; max-width: 600px; margin: auto; }
-        input, select, textarea { width: 100%; padding: 8px; margin-top: 6px; }
-        button { margin-top: 12px; padding: 10px 20px; }
+        body {
+            background: #f4f6fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: #fff;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 32px 36px 28px 36px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.03);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            color: #2d3a4b;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #34495e;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border: 1px solid #d1d9e6;
+            border-radius: 6px;
+            background: #f9fafc;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #4a90e2;
+            outline: none;
+            background: #fff;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        button {
+            width: 100%;
+            background: linear-gradient(90deg, #4a90e2 0%, #357ab8 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(74,144,226,0.08);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #357ab8 0%, #4a90e2 100%);
+            box-shadow: 0 4px 16px rgba(74,144,226,0.13);
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 8px 16px 8px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h2>Enter Credit Decision</h2>
-    <form action="/submit" method="POST">
-        <label>Date</label>
-        <input type="date" name="date" required>
+    <div class="container">
+        <h2>Enter Credit Decision</h2>
+        <form action="/submit" method="POST">
+            <label>Date</label>
+            <input type="date" name="date" required>
 
-        <label>Customer Name</label>
-        <input type="text" name="customer_name" required>
+            <label>Customer Name</label>
+            <input type="text" name="customer_name" required>
 
-        <label>Vendor Location</label>
-        <input type="text" name="vendor_location" required>
+            <label>Vendor Location</label>
+            <input type="text" name="vendor_location" required>
 
-        <label>Lease Rep</label>
-        <input type="text" name="lease_rep" required>
+            <label>Lease Rep</label>
+            <select name="lease_rep" required>
+                <option value="Nikki">Nikki</option>
+                <option value="Pete">Pete</option>
+                <option value="Mike">Mike</option>
+                <option value="Bobby">Bobby</option>
+                <option value="Nick">Nick</option>
+                <option value="Erin">Erin</option>        
+            </select>
 
-        <label>Finance Type</label>
-        <input type="text" name="finance_type" required>
+            <label>Finance Type</label>
+             <select name="finance_type" required>
+                <option value="TRAC">TRAC</option>
+                <option value="LOAN">LOAN</option>
+                <option value="FMV">FMV</option>       
+            </select>
 
-        <label>Vehicle Type</label>
-        <input type="text" name="vehicle_type" required>
+            <label>Vehicle Type</label>
+             <select name="vehicle_type" required>
+                <option value="Sleeper">Sleeper</option>
+                <option value="Daycab">Daycab</option>
+                <option value="Dump">Dump</option>
+                <option value="Box Truck">Box Truck</option>
+                <option value="Expediter">Expediter</option>
+                <option value="Cargo Van">Cargo Van</option>
+                <option value="Sprinter Van">Sprinter Van</option>
+                <option value="Pickup Truck">Pickup Truck</option>
+                <option value="Tow Truck">Tow Truck</option>
+                <option value="Tool Truck">Tool Truck</option>
+                <option value="Mobile Vet">Mobile Vet</option>
+                <option value="Mulch Blower">Mulch Blower</option>
+                <option value="Dry Van Trailer">Dry Van Trailer</option>
+                <option value="Reefer Trailer">Reefer Trailer</option>
+                <option value="Flatbed Trailer">Flatbed Trailer</option>
+                <option value="Lowboy Trailer">Lowboy Trailer</option>
+                <option value="Tank Trailer">Tank Trailer</option>  
+                <option value="Car Hauler">Car Hauler</option>
+                <option value="Car Haul Trailer">Car Haul Trailer</option>
+                <option value="Other">Other</option>
+            </select>
 
-        <label>Vehicle Year</label>
-        <input type="number" name="vehicle_year" required>
+            <label>Vehicle Year</label>
+            <input type="number" name="vehicle_year" required>
 
-        <label>Vehicle Make</label>
-        <input type="text" name="vehicle_make" required>
+            <label>Vehicle Make</label>
+            <input type="text" name="vehicle_make" required>
 
-        <label>Vehicle Model</label>
-        <input type="text" name="vehicle_model" required>
+            <label>Vehicle Model</label>
+            <input type="text" name="vehicle_model" required>
 
-        <label>Sale Price</label>
-        <input type="number" name="sale_price" step="0.01" required>
+            <label>Sale Price</label>
+            <input type="number" name="sale_price" step="0.01" required>
 
-        <label>Term</label>
-        <input type="number" name="term" required>
+            <label>Term</label>
+            <input type="number" name="term" required>
 
-        <label>Rate (%)</label>
-        <input type="number" name="rate" step="0.01" required>
+            <label>Rate (%)</label>
+            <input type="number" name="rate" step="0.01" required>
 
-        <label>Down Payment</label>
-        <input type="number" name="down_payment" step="0.01" required>
+            <label>Down Payment</label>
+            <input type="number" name="down_payment" step="0.01" required>
 
-        <label>Cost of Funds</label>
-        <input type="number" name="cost_of_funds" step="0.01" required>
+            <label>Cost of Funds</label>
+            <input type="number" name="cost_of_funds" step="0.01" required>
 
-        <label>Credit Grade</label>
-        <input type="text" name="credit_grade" required>
+            <label>Credit Grade</label>
+            <input type="text" name="credit_grade" required>
 
-        <label>Credit Decision</label>
-        <select name="credit_decision" required>
-            <option value="Approved">Approved</option>
-            <option value="Declined">Declined</option>
-            <option value="Pending">Pending</option>
-        </select>
+            <label>Credit Decision</label>
+            <select name="credit_decision" required>
+                <option value="Approved">Approved</option>
+                <option value="Declined">Declined</option>
+                <option value="Pending">Pending</option>
+            </select>
 
-        <label>Notes</label>
-        <textarea name="notes" rows="3"></textarea>
+            <label>Notes</label>
+            <textarea name="notes" rows="3"></textarea>
 
-        <button type="submit">Submit</button>
-    </form>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
