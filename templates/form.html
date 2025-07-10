@@ -136,7 +136,9 @@
             </select>
 
             <label>Vehicle Model</label>
-            <input type="text" name="vehicle_model" required>
+            <select name="vehicle_model" id="vehicle_model" required>
+                <option value="">Select Model</option>
+            </select>
 
             <label>Sale Price</label>
             <input type="number" name="sale_price" step="0.01" required>
@@ -169,5 +171,6 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='vehicle_models.js') }}"></script>
 </body>
 </html>
