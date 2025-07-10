@@ -10,7 +10,7 @@ app.secret_key = 'your_secret_key'  # Needed for flash messages
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('service_account.json', scope)
 client = gspread.authorize(creds)
-sheet = client.open("Credit Decisions").sheet1  # Ensure this sheet name matches yours
+sheet = client.open("Credit Decisions").worksheet("Main")  # Ensure this sheet name matches yours
 
 @app.route('/')
 def index():
@@ -61,7 +61,6 @@ def submit():
     # If all validations pass, save to sheet
     data = [
         request.form['date'],
-        request.form['opportunity_number'],
         request.form['customer_name'],
         request.form['vendor_location'],
         request.form['lease_rep'],
