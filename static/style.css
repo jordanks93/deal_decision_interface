@@ -1,0 +1,91 @@
+        body {
+            background: #f4f6fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: rgb(3, 40, 83);
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 32px 36px 28px 36px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.03);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            color: white;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center; /* Center label text */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center all children horizontally */
+        }
+        input, select, textarea {
+            width: 320px;
+            max-width: 320px;
+            min-width: 320px;
+            box-sizing: border-box;
+            display: block;
+            margin-bottom: 18px;
+            border: 1px solid #d1d9e6;
+            border-radius: 6px;
+            background: #f9fafc;
+            font-size: 1rem;
+            padding: 10px 12px;
+            transition: border-color 0.2s;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            width: 320px;
+            max-width: 320px;
+            min-width: 320px;
+            background: linear-gradient(90deg, #4a90e2 0%, #357ab8 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(74,144,226,0.08);
+            transition: background 0.2s, box-shadow 0.2s;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #4a90e2;
+            outline: none;
+            background: #fff;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #357ab8 0%, #4a90e2 100%);
+            box-shadow: 0 4px 16px rgba(74,144,226,0.13);
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 8px 16px 8px;
+            }
+            input, select, textarea, button {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+            }
+        }
