@@ -19,7 +19,7 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     required_fields = [
-        'date', 'opportunity_number', 'customer_name', 'vendor_location',
+        'date', 'customer_name', 'vendor_location',
         'lease_rep', 'finance_type', 'vehicle_type', 'vehicle_year',
         'vehicle_make', 'vehicle_model', 'sale_price', 'term', 'rate',
         'down_payment', 'cost_of_funds', 'credit_grade', 'credit_decision'
@@ -38,7 +38,7 @@ def submit():
         errors.append("Invalid date format.")
 
     # Validate numbers
-    number_fields = ['opportunity_number', 'sale_price', 'term', 'rate', 'down_payment', 'cost_of_funds']
+    number_fields = [ 'sale_price', 'term', 'rate', 'down_payment', 'cost_of_funds']
     for field in number_fields:
         try:
             float(request.form[field])
