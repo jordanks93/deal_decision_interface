@@ -71,8 +71,8 @@ def submit():
         request.form['vehicle_model'],
         request.form['sale_price'],
         request.form['term'],
-        request.form['rate'],
-        request.form['down_payment'],
+        float(request.form['rate']) / 100,  # Convert rate to decimal
+        float(request.form['down_payment']) / 100,  # Convert down payment to decimal
         request.form['cost_of_funds'],
         request.form['credit_grade'],
         request.form['credit_decision'],
