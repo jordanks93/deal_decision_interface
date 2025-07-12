@@ -1,207 +1,210 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Credit Decision Entry</title>
 </head>
 <body>
     <div class="container">
         <h2>Enter Credit Decision</h2>
         <form action="/submit" method="POST">
-            <label>Date</label>
-            <input type="date" name="date" required>
+            <div class="form-columns">
+                <div class="form-col">
+                    <label>Date</label>
+                    <input type="date" name="date" required>
 
-            <label>Customer Name</label>
-            <input type="text" name="customer_name" required>
+                    <label>Customer Name</label>
+                    <input type="text" name="customer_name" required>
 
-            <label>Vendor Location</label>
-            <select name="vendor_location" required>
-                <option value="">Select Vendor Location</option>
-                <option value="Fyda Columbus">Fyda Columbus</option>
-                <option value="Fyda Cincinnati">Fyda Cincinnati</option>
-                <option value="Fyda Youngstown">Fyda Youngstown</option>
-                <option value="Fyda Pittsburgh">Fyda Pittsburgh</option>
-                <option value="Fyda Zanesville">Fyda Zanesville</option>
-                <option value="Impel Union">Impel Union</option>
-                <option value="Interstate">Interstate</option>
-                <option value="M&T Truck Sales">M&T Truck Sales</option>
-                <option value="Mazo Capital">Mazo Capital</option>
-                <option value="MHC">MHC</option>
-                <option value="Compass">Compass</option>
-                <option value="Fleet XL">Fleet XL</option>
-                <option value="CAS">CAS</option>
-                <option value="Custom">Custom</option> 
-                <option value="Non Fyda">Non Fyda</option>     
-            </select>
+                    <label>Vendor Location</label>
+                    <select name="vendor_location" required>
+                        <option value="">Select Vendor Location</option>
+                        <option value="Fyda Columbus">Fyda Columbus</option>
+                        <option value="Fyda Cincinnati">Fyda Cincinnati</option>
+                        <option value="Fyda Youngstown">Fyda Youngstown</option>
+                        <option value="Fyda Pittsburgh">Fyda Pittsburgh</option>
+                        <option value="Fyda Zanesville">Fyda Zanesville</option>
+                        <option value="Impel Union">Impel Union</option>
+                        <option value="Interstate">Interstate</option>
+                        <option value="M&T Truck Sales">M&T Truck Sales</option>
+                        <option value="Mazo Capital">Mazo Capital</option>
+                        <option value="MHC">MHC</option>
+                        <option value="Compass">Compass</option>
+                        <option value="Fleet XL">Fleet XL</option>
+                        <option value="CAS">CAS</option>
+                        <option value="Custom">Custom</option> 
+                        <option value="Non Fyda">Non Fyda</option>     
+                    </select>
 
-            <label>Lease Rep</label>
-            <select name="lease_rep" required>
-                <option value="">Select Lease Rep</option>
-                <option value="Nikki">Nikki</option>
-                <option value="Pete">Pete</option>
-                <option value="Mike">Mike</option>
-                <option value="Bobby">Bobby</option>
-                <option value="Nick">Nick</option>
-                <option value="Erin">Erin</option>        
-            </select>
+                    <label>Lease Rep</label>
+                    <select name="lease_rep" required>
+                        <option value="">Select Lease Rep</option>
+                        <option value="Nikki">Nikki</option>
+                        <option value="Pete">Pete</option>
+                        <option value="Mike">Mike</option>
+                        <option value="Bobby">Bobby</option>
+                        <option value="Nick">Nick</option>
+                        <option value="Erin">Erin</option>        
+                    </select>
 
-            <label>Finance Type</label>
-             <select name="finance_type" required>
-                <option value="">Select Finance Type</option>
-                <option value="TRAC">TRAC</option>
-                <option value="LOAN">LOAN</option>
-                <option value="FMV">FMV</option>       
-            </select>
+                    <label>Finance Type</label>
+                    <select name="finance_type" required>
+                        <option value="">Select Finance Type</option>
+                        <option value="TRAC">TRAC</option>
+                        <option value="LOAN">LOAN</option>
+                        <option value="FMV">FMV</option>       
+                    </select>
 
-            <label>Vehicle Type</label>
-             <select name="vehicle_type" required>
-                <option value="">Select Vehicle Type</option>
-                <option value="Sleeper">Sleeper</option>
-                <option value="Daycab">Daycab</option>
-                <option value="Dump">Dump</option>
-                <option value="Box Truck">Box Truck</option>
-                <option value="Expediter">Expediter</option>
-                <option value="Cargo Van">Cargo Van</option>
-                <option value="Sprinter Van">Sprinter Van</option>
-                <option value="Pickup Truck">Pickup Truck</option>
-                <option value="Tow Truck">Tow Truck</option>
-                <option value="Tool Truck">Tool Truck</option>
-                <option value="Mobile Vet">Mobile Vet</option>
-                <option value="Mulch Blower">Mulch Blower</option>
-                <option value="Dry Van Trailer">Dry Van Trailer</option>
-                <option value="Reefer Trailer">Reefer Trailer</option>
-                <option value="Flatbed Trailer">Flatbed Trailer</option>
-                <option value="Lowboy Trailer">Lowboy Trailer</option>
-                <option value="Tank Trailer">Tank Trailer</option>  
-                <option value="Car Hauler">Car Hauler</option>
-                <option value="Car Haul Trailer">Car Haul Trailer</option>
-                <option value="Other">Other</option>
-            </select>
+                    <label>Vehicle Type</label>
+                    <select name="vehicle_type" required>
+                        <option value="">Select Vehicle Type</option>
+                        <option value="Sleeper">Sleeper</option>
+                        <option value="Daycab">Daycab</option>
+                        <option value="Dump">Dump</option>
+                        <option value="Box Truck">Box Truck</option>
+                        <option value="Expediter">Expediter</option>
+                        <option value="Cargo Van">Cargo Van</option>
+                        <option value="Sprinter Van">Sprinter Van</option>
+                        <option value="Pickup Truck">Pickup Truck</option>
+                        <option value="Tow Truck">Tow Truck</option>
+                        <option value="Tool Truck">Tool Truck</option>
+                        <option value="Mobile Vet">Mobile Vet</option>
+                        <option value="Mulch Blower">Mulch Blower</option>
+                        <option value="Dry Van Trailer">Dry Van Trailer</option>
+                        <option value="Reefer Trailer">Reefer Trailer</option>
+                        <option value="Flatbed Trailer">Flatbed Trailer</option>
+                        <option value="Lowboy Trailer">Lowboy Trailer</option>
+                        <option value="Tank Trailer">Tank Trailer</option>  
+                        <option value="Car Hauler">Car Hauler</option>
+                        <option value="Car Haul Trailer">Car Haul Trailer</option>
+                        <option value="Other">Other</option>
+                    </select>
 
-            <label>Vehicle Year</label>
-            <select name="vehicle_year" required>
-                <option value="">Select Year</option>
-                <option value="2026">2026</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-                <option value="2014">2014</option>
-                <option value="2013">2013</option>
-                <option value="2012">2012</option>
-                <option value="2011">2011</option>
-                <option value="2010">2010</option>
-                <option value="2009">2009</option>
-                <option value="2008">2008</option>
-                <option value="2007">2007</option>
-                <option value="2006">2006</option>
-                <option value="2005">2005</option>
-                <option value="2004">2004</option>
-                <option value="2003">2003</option>
-                <option value="2002">2002</option>
-                <option value="2001">2001</option>
-            </select>
+                    <label>Vehicle Year</label>
+                    <select name="vehicle_year" required>
+                        <option value="">Select Year</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                        <option value="2002">2002</option>
+                        <option value="2001">2001</option>
+                    </select>
 
-            <label>Vehicle Make</label>
-            <select name="vehicle_make" required>
-                <option value="">Select Make</option>
-                <option value="Freightliner">Freightliner</option>
-                <option value="Peterbilt">Peterbilt</option>
-                <option value="Kenworth">Kenworth</option>
-                <option value="Volvo">Volvo</option>
-                <option value="International">International</option>
-                <option value="Mack">Mack</option>
-                <option value="Western Star">Western Star</option>
-                <option value="Ford">Ford</option>
-                <option value="Chevrolet">Chevrolet</option>
-                <option value="GMC">GMC</option>
-                <option value="Hino">Hino</option>
-                <option value="Isuzu">Isuzu</option>
-                <option value="Sterling">Sterling</option>
-                <option value="RAM">RAM</option>
-                <option value="Dodge">Dodge</option>
-                <option value="Mercedes-Benz">Mercedes-Benz</option>
-                <option value="UD">UD</option>
-                <option value="Ottawa">Ottawa</option>
-                <option value="Capacity">Capacity</option>
-                <option value="Kalmar">Kalmar</option>
-                <option value="Great Dane">Great Dane</option>
-                <option value="Utility">Utility</option>
-                <option value="Wabash">Wabash</option>
-                <option value="Hyundai Translead">Hyundai Translead</option>
-                <option value="Stoughton">Stoughton</option>
-                <option value="Vanguard">Vanguard</option>
-                <option value="Fontaine">Fontaine</option>
-                <option value="Transcraft">Transcraft</option>
-                <option value="Trail King">Trail King</option>
-                <option value="East">East</option>
-                <option value="MAC Trailer">MAC Trailer</option>
-                <option value="Reitnouer">Reitnouer</option>
-                <option value="Manac">Manac</option>
-                <option value="Benson">Benson</option>
-                <option value="Doepker">Doepker</option>
-                <option value="Wilson">Wilson</option>
-                <option value="Timpte">Timpte</option>
-                <option value="Strick">Strick</option>
-                <option value="Other">Other</option>
-            </select>
+                    <label>Vehicle Make</label>
+                    <select name="vehicle_make" required>
+                        <option value="">Select Make</option>
+                        <option value="Freightliner">Freightliner</option>
+                        <option value="Peterbilt">Peterbilt</option>
+                        <option value="Kenworth">Kenworth</option>
+                        <option value="Volvo">Volvo</option>
+                        <option value="International">International</option>
+                        <option value="Mack">Mack</option>
+                        <option value="Western Star">Western Star</option>
+                        <option value="Ford">Ford</option>
+                        <option value="Chevrolet">Chevrolet</option>
+                        <option value="GMC">GMC</option>
+                        <option value="Hino">Hino</option>
+                        <option value="Isuzu">Isuzu</option>
+                        <option value="Sterling">Sterling</option>
+                        <option value="RAM">RAM</option>
+                        <option value="Dodge">Dodge</option>
+                        <option value="Mercedes-Benz">Mercedes-Benz</option>
+                        <option value="UD">UD</option>
+                        <option value="Ottawa">Ottawa</option>
+                        <option value="Capacity">Capacity</option>
+                        <option value="Kalmar">Kalmar</option>
+                        <option value="Great Dane">Great Dane</option>
+                        <option value="Utility">Utility</option>
+                        <option value="Wabash">Wabash</option>
+                        <option value="Hyundai Translead">Hyundai Translead</option>
+                        <option value="Stoughton">Stoughton</option>
+                        <option value="Vanguard">Vanguard</option>
+                        <option value="Fontaine">Fontaine</option>
+                        <option value="Transcraft">Transcraft</option>
+                        <option value="Trail King">Trail King</option>
+                        <option value="East">East</option>
+                        <option value="MAC Trailer">MAC Trailer</option>
+                        <option value="Reitnouer">Reitnouer</option>
+                        <option value="Manac">Manac</option>
+                        <option value="Benson">Benson</option>
+                        <option value="Doepker">Doepker</option>
+                        <option value="Wilson">Wilson</option>
+                        <option value="Timpte">Timpte</option>
+                        <option value="Strick">Strick</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-col">
+                    <label>Vehicle Model</label>
+                    <select name="vehicle_model" id="vehicle_model" required>
+                        <option value="">Select Model</option>
+                    </select>
 
-            <label>Vehicle Model</label>
-            <select name="vehicle_model" id="vehicle_model" required>
-                <option value="">Select Model</option>
-            </select>
+                    <label>Sale Price</label>
+                    <input type="number" name="sale_price" step="0.01" required>
 
-            <label>Sale Price</label>
-            <input type="number" name="sale_price" step="0.01" required>
+                    <label>Term (Months)</label>
+                    <input type="number" name="term" required>
 
-            <label>Term (Months)</label>
-            <input type="number" name="term" required>
+                    <label>Rate (%)</label>
+                    <input type="number" name="rate" step="0.01" required>
 
-            <label>Rate (%)</label>
-            <input type="number" name="rate" step="0.01" required>
+                    <label>Down Payment (%)</label>
+                    <input type="number" name="down_payment" step="0.01" required>
 
-            <label>Down Payment (%)</label>
-            <input type="number" name="down_payment" step="0.01" required>
+                    <label>Cost of Funds</label>
+                    <input type="number" name="cost_of_funds" step="0.01" required>
 
-            <label>Cost of Funds</label>
-            <input type="number" name="cost_of_funds" step="0.01" required>
+                    <label>Credit Grade</label>
+                    <select name="credit_grade" required>
+                        <option value="">Select Grade</option>
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="C+">C+</option>
+                        <option value="C">C</option>
+                        <option value="C-">C-</option>
+                        <option value="R">R</option>
+                    </select>
 
-            <label>Credit Grade</label>
-            <select name="credit_grade" required>
-                <option value="">Select Grade</option>
-                <option value="A+">A+</option>
-                <option value="A">A</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B">B</option>
-                <option value="B-">B-</option>
-                <option value="C+">C+</option>
-                <option value="C">C</option>
-                <option value="C-">C-</option>
-                <option value="R">R</option>
-            </select>
-
-            <label>Credit Decision</label>
-            <select name="credit_decision" required>
-                <option value="">Select Credit Decision</option>
-                <option value="Approved">Approved</option>
-                <option value="Declined">Declined</option>
-                <option value="Pending">Pending</option>
-            </select>
-
-            <label>Notes</label>
-            <textarea name="notes" rows="3"></textarea>
-
-            <button type="submit">Submit</button>
+                    <label>Credit Decision</label>
+                    <select name="credit_decision" required>
+                        <option value="">Select Credit Decision</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Declined">Declined</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-notes">
+                <label>Notes</label>
+                <textarea name="notes" rows="3"></textarea>
+                <button type="submit">Submit</button>
+            </div>
         </form>
     </div>
     <script src="{{ url_for('static', filename='vehicle_models.js') }}"></script>

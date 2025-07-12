@@ -1,4 +1,4 @@
-        body {
+body {
             background: #f4f6fa;
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
@@ -6,7 +6,7 @@
         }
         .container {
             background: rgb(3, 40, 83);
-            max-width: 500px;
+            max-width: 900px; /* <-- Increase this value */
             margin: 40px auto;
             padding: 32px 36px 28px 36px;
             border-radius: 12px;
@@ -88,4 +88,32 @@
                 max-width: 100%;
                 min-width: 0;
             }
-        }
+        }/* Add to the end of your style.css file */
+.form-columns {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.form-col {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 320px;
+    min-width: 260px;
+    max-width: 340px;
+}
+.form-notes {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (max-width: 900px) {
+    .form-columns {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-col {
+        max-width: 100%;
+    }
+}
