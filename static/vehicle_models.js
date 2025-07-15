@@ -6,7 +6,7 @@ const modelsByMake = {
                     "579", "389", "379", "567", "386", "337", "348", "367"
                 ],
                 "Kenworth": [
-                    "T680", "T880", "W900", "T800", "T370", "T660", "T700"
+                    "T680", "T880", "W900", "W990", "T800", "T370", "T660", "T700"
                 ],
                 "Volvo": [
                     "VNL 760", "VNL 860", "VNL 670", "VNL 780", "VNL 300", "VNR", "VHD"
@@ -28,6 +28,9 @@ const modelsByMake = {
                 ],
                 "Wabash": [
                     "National", "ArcticLite", "DuraPlate", "Reefer"
+                ],
+                "Extreme": [
+                    "Extreme Flatbed", "Extreme Drop Deck", "Extreme Combo"
                 ],
                 "Hyundai Translead": [
                     "HT Composite", "HT Thermotech", "HT Dry Van"
