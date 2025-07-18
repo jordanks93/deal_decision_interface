@@ -58,6 +58,13 @@ def submit():
             flash(error)
         return render_template('form.html')
 
+    # Format sale price as $X,XXX.XX
+    try:
+        sale_price_raw = float(request.form['sale_price'])
+        sale_price_formatted = "${:,.2f}".format(sale_price_raw)
+    except (ValueError, KeyError):
+        sale_price_formatted = request.form['sale_price']  # fallback
+
     # If all validations pass, save to sheet
     data = [
         request.form['date'],
@@ -69,7 +76,7 @@ def submit():
         request.form['vehicle_year'],
         request.form['vehicle_make'],
         request.form['vehicle_model'],
-        request.form['sale_price'],
+        sale_price_formatted,  # use formatted price here
         request.form['term'],
         float(request.form['rate']) / 100,  # Convert rate to decimal
         float(request.form['down_payment']) / 100,  # Convert down payment to decimal

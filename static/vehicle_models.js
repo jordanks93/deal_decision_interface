@@ -1,6 +1,6 @@
 const modelsByMake = {
                 "Freightliner": [
-                    "Cascadia 126", "Cascadia 125", "Columbia", "Coronado", "Century", "M2 106", "M2 112", "FLD120", "FL70", "FL80"
+                    "Cascadia 126", "Cascadia 125", "Cascadia 116", "Columbia", "Coronado", "Century", "M2 106", "M2 112", "FLD120", "FL70", "FL80"
                 ],
                 "Peterbilt": [
                     "579", "389", "379", "567", "386", "337", "348", "367"
@@ -19,6 +19,9 @@ const modelsByMake = {
                 ],
                 "Western Star": [
                     "5700XE", "4900", "4700", "6900", "49X"
+                ],
+                "Ford": [
+                    "F59", "F750", "F650", "F550", "F450", "F350"
                 ],
                 "Great Dane": [
                     "Champion", "Everest", "Freedom", "AlumVan", "Reefer"
