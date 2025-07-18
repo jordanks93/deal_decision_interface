@@ -18,7 +18,7 @@ const modelsByMake = {
                     "Anthem", "Pinnacle", "Granite", "Vision", "CH613", "CXU613"
                 ],
                 "Western Star": [
-                    "5700XE", "4900", "4700", "6900", "49X"
+                    "5700XE", "4900", "4700", "6900", "49X", "47X"
                 ],
                 "Ford": [
                     "F59", "F750", "F650", "F550", "F450", "F350"
