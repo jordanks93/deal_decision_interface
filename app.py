@@ -2,9 +2,10 @@ from flask import Flask, request, render_template, redirect, flash
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', os.urandom(24))
 
 # Google Sheets setup
 scope = [
