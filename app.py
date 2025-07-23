@@ -93,5 +93,45 @@ def submit():
     flash("Submission successful!")
     return redirect('/')
 
+@app.route('/submit_loc', methods=['POST'])
+def submit_loc():
+    required_fields = ['date', 'customer_name', 'lease_rep', 'amount']
+    errors = []
+
+    for field in required_fields:
+        if not request.form.get(field):
+            errors.append(f"{field.replace('_', ' ').title()} is required.")
+
+    # Validate date
+    try:
+        datetime.strptime(request.form['date'], '%Y-%m-%d')
+    except (ValueError, KeyError):
+        errors.append("Invalid date format.")
+
+    # Validate amount
+    try:
+        amount_raw = float(request.form['amount'])
+        amount_formatted = "${:,.2f}".format(amount_raw)
+    except (ValueError, KeyError):
+        errors.append("Amount must be a number.")
+        amount_formatted = request.form.get('amount', '')
+
+    if errors:
+        for error in errors:
+            flash(error)
+        return render_template('form.html')
+
+    # Save to LOC sheet
+    loc_data = [
+        request.form['date'],
+        request.form['customer_name'],
+        request.form['lease_rep'],
+        amount_formatted,
+        request.form.get('notes', '')
+    ]
+    client.open("Credit Decisions").worksheet("LOC").append_row(loc_data)
+    flash("LOC submission successful!")
+    return redirect('/')
+
 if __name__ == '__main__':
     app.run(debug=True)

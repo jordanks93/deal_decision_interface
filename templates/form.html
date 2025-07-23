@@ -6,8 +6,14 @@
 </head>
 <body>
     <div class="container">
-        <h2>Enter Credit Decision</h2>
-        <form action="/submit" method="POST">
+        <h2>
+            <span id="form-title">Enter Credit Decision</span>
+            <select id="mode-select" style="float:right; margin-top:5px;">
+                <option value="credit">Credit Decision</option>
+                <option value="loc">Open Line of Credit</option>
+            </select>
+        </h2>
+        <form id="credit-form" action="/submit" method="POST">
             <div class="form-columns">
                 <div class="form-col">
                     <label>Date</label>
@@ -225,7 +231,51 @@
                 <button type="submit">Submit</button>
             </div>
         </form>
+        <form id="loc-form" action="/submit_loc" method="POST" style="display:none;">
+            <div class="form-columns">
+                <div class="form-col">
+                    <label>Date</label>
+                    <input type="date" name="date" required>
+
+                    <label>Customer Name</label>
+                    <input type="text" name="customer_name" required>
+
+                    <label>Lease Rep</label>
+                    <select name="lease_rep" required>
+                        <option value="">Select Lease Rep</option>
+                        <option value="Nikki">Nikki</option>
+                        <option value="Pete">Pete</option>
+                        <option value="Mike">Mike</option>
+                        <option value="Bobby">Bobby</option>
+                        <option value="Nick">Nick</option>
+                        <option value="Erin">Erin</option>        
+                    </select>
+
+                    <label>Amount</label>
+                    <input type="number" name="amount" step="0.01" required>
+                </div>
+            </div>
+            <div class="form-notes">
+                <label>Notes</label>
+                <textarea name="notes" rows="3"></textarea>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
     </div>
     <script src="{{ url_for('static', filename='vehicle_models.js') }}"></script>
+    <script>
+    // Switch between forms
+    document.getElementById('mode-select').addEventListener('change', function() {
+        if (this.value === 'credit') {
+            document.getElementById('credit-form').style.display = '';
+            document.getElementById('loc-form').style.display = 'none';
+            document.getElementById('form-title').textContent = 'Enter Credit Decision';
+        } else {
+            document.getElementById('credit-form').style.display = 'none';
+            document.getElementById('loc-form').style.display = '';
+            document.getElementById('form-title').textContent = 'Enter Open Line of Credit';
+        }
+    });
+    </script>
 </body>
 </html>
