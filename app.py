@@ -4,13 +4,51 @@ from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Needed for flash messages
+app.secret_key = 'your_secret_key'
 
 # Google Sheets setup
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+scope = [
+    'https://spreadsheets.google.com/feeds',
+    'https://www.googleapis.com/auth/drive'
+]
 creds = ServiceAccountCredentials.from_json_keyfile_name('service_account.json', scope)
 client = gspread.authorize(creds)
-sheet = client.open("Credit Decisions").worksheet("Main")  # Ensure this sheet name matches yours
+main_sheet = client.open("Credit Decisions").worksheet("Main")
+loc_sheet = client.open("Credit Decisions").worksheet("LOC")
+
+def validate_fields(form, required_fields):
+    errors = []
+    for field in required_fields:
+        if not form.get(field):
+            errors.append(f"{field.replace('_', ' ').title()} is required.")
+    return errors
+
+def validate_date(date_str):
+    try:
+        datetime.strptime(date_str, '%Y-%m-%d')
+        return None
+    except (ValueError, KeyError):
+        return "Invalid date format."
+
+def validate_number_fields(form, fields):
+    errors = []
+    for field in fields:
+        try:
+            float(form[field])
+        except (ValueError, KeyError):
+            errors.append(f"{field.replace('_', ' ').title()} must be a number.")
+    return errors
+
+def validate_vehicle_year(vehicle_year):
+    if vehicle_year == "Real Estate":
+        return None
+    try:
+        year = int(vehicle_year)
+        if year < 2000 or year > 2026:
+            return "Vehicle Year must be between 2000 and 2026, or 'Real Estate'."
+    except (ValueError, KeyError):
+        return "Vehicle Year must be a valid year or 'Real Estate'."
+    return None
 
 @app.route('/')
 def index():
@@ -19,57 +57,31 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     required_fields = [
-        'date', 'customer_name', 'vendor_location',
-        'lease_rep', 'finance_type', 'vehicle_type', 'vehicle_year',
-        'vehicle_make', 'vehicle_model', 'sale_price', 'term', 'rate',
-        'down_payment', 'cost_of_funds', 'credit_grade', 'credit_decision'
+        'date', 'customer_name', 'vendor_location', 'lease_rep', 'finance_type',
+        'vehicle_type', 'vehicle_year', 'vehicle_make', 'vehicle_model',
+        'sale_price', 'term', 'rate', 'down_payment', 'cost_of_funds',
+        'credit_grade', 'credit_decision'
     ]
-    errors = []
-
-    # Check required fields
-    for field in required_fields:
-        if not request.form.get(field):
-            errors.append(f"{field.replace('_', ' ').title()} is required.")
-
-    # Validate date
-    try:
-        datetime.strptime(request.form['date'], '%Y-%m-%d')
-    except (ValueError, KeyError):
-        errors.append("Invalid date format.")
-
-    # Validate numbers
-    number_fields = [ 'sale_price', 'term', 'rate', 'down_payment', 'cost_of_funds']
-    for field in number_fields:
-        try:
-            float(request.form[field])
-        except (ValueError, KeyError):
-            errors.append(f"{field.replace('_', ' ').title()} must be a number.")
-
-    # Validate vehicle year
-    vehicle_year = request.form['vehicle_year']
-    if vehicle_year == "Real Estate":
-        pass  # Accept "Real Estate" as valid
-    else:
-        try:
-            year = int(vehicle_year)
-            if year < 2000 or year > 2026:
-                errors.append("Vehicle Year must be between 2000 and 2026, or 'Real Estate'.")
-        except (ValueError, KeyError):
-            errors.append("Vehicle Year must be a valid year or 'Real Estate'.")
+    errors = validate_fields(request.form, required_fields)
+    date_error = validate_date(request.form.get('date', ''))
+    if date_error:
+        errors.append(date_error)
+    errors += validate_number_fields(request.form, ['sale_price', 'term', 'rate', 'down_payment', 'cost_of_funds'])
+    year_error = validate_vehicle_year(request.form.get('vehicle_year', ''))
+    if year_error:
+        errors.append(year_error)
 
     if errors:
         for error in errors:
             flash(error)
         return render_template('form.html')
 
-    # Format sale price as $X,XXX.XX
     try:
-        sale_price_raw = float(request.form['sale_price'])
-        sale_price_formatted = "${:,.2f}".format(sale_price_raw)
+        sale_price = float(request.form['sale_price'])
+        sale_price_formatted = "${:,.2f}".format(sale_price)
     except (ValueError, KeyError):
-        sale_price_formatted = request.form['sale_price']  # fallback
+        sale_price_formatted = request.form.get('sale_price', '')
 
-    # If all validations pass, save to sheet
     data = [
         request.form['date'],
         request.form['customer_name'],
@@ -80,38 +92,29 @@ def submit():
         request.form['vehicle_year'],
         request.form['vehicle_make'],
         request.form['vehicle_model'],
-        sale_price_formatted,  # use formatted price here
+        sale_price_formatted,
         request.form['term'],
-        float(request.form['rate']) / 100,  # Convert rate to decimal
-        float(request.form['down_payment']) / 100,  # Convert down payment to decimal
+        float(request.form['rate']) / 100,
+        float(request.form['down_payment']) / 100,
         request.form['cost_of_funds'],
         request.form['credit_grade'],
         request.form['credit_decision'],
         request.form.get('notes', '')
     ]
-    sheet.append_row(data)
+    main_sheet.append_row(data)
     flash("Submission successful!")
     return redirect('/')
 
 @app.route('/submit_loc', methods=['POST'])
 def submit_loc():
     required_fields = ['date', 'customer_name', 'lease_rep', 'amount']
-    errors = []
-
-    for field in required_fields:
-        if not request.form.get(field):
-            errors.append(f"{field.replace('_', ' ').title()} is required.")
-
-    # Validate date
+    errors = validate_fields(request.form, required_fields)
+    date_error = validate_date(request.form.get('date', ''))
+    if date_error:
+        errors.append(date_error)
     try:
-        datetime.strptime(request.form['date'], '%Y-%m-%d')
-    except (ValueError, KeyError):
-        errors.append("Invalid date format.")
-
-    # Validate amount
-    try:
-        amount_raw = float(request.form['amount'])
-        amount_formatted = "${:,.2f}".format(amount_raw)
+        amount = float(request.form['amount'])
+        amount_formatted = "${:,.2f}".format(amount)
     except (ValueError, KeyError):
         errors.append("Amount must be a number.")
         amount_formatted = request.form.get('amount', '')
@@ -121,7 +124,6 @@ def submit_loc():
             flash(error)
         return render_template('form.html')
 
-    # Save to LOC sheet
     loc_data = [
         request.form['date'],
         request.form['customer_name'],
@@ -129,7 +131,7 @@ def submit_loc():
         amount_formatted,
         request.form.get('notes', '')
     ]
-    client.open("Credit Decisions").worksheet("LOC").append_row(loc_data)
+    loc_sheet.append_row(loc_data)
     flash("LOC submission successful!")
     return redirect('/')
 
