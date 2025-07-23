@@ -2,15 +2,15 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Credit Decision Entry</title>
+    <title>Credit Decision</title>
 </head>
 <body>
     <div class="container">
         <h2>
-            <span id="form-title">Enter Credit Decision</span>
-            <select id="mode-select" style="float:right; margin-top:5px;">
+            <span id="form-title">Enter Credit Decision or LOC</span>
+            <select id="mode-select" style="float:center; margin-top:10px;">
                 <option value="credit">Credit Decision</option>
-                <option value="loc">Open Line of Credit</option>
+                <option value="loc">Line of Credit</option>
             </select>
         </h2>
         <form id="credit-form" action="/submit" method="POST">
