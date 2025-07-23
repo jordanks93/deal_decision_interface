@@ -46,12 +46,16 @@ def submit():
             errors.append(f"{field.replace('_', ' ').title()} must be a number.")
 
     # Validate vehicle year
-    try:
-        year = int(request.form['vehicle_year'])
-        if year < 2000 or year > 2026:
-            errors.append("Vehicle Year must be between 2000 and 2026.")
-    except (ValueError, KeyError):
-        errors.append("Vehicle Year must be a valid year.")
+    vehicle_year = request.form['vehicle_year']
+    if vehicle_year == "Real Estate":
+        pass  # Accept "Real Estate" as valid
+    else:
+        try:
+            year = int(vehicle_year)
+            if year < 2000 or year > 2026:
+                errors.append("Vehicle Year must be between 2000 and 2026, or 'Real Estate'.")
+        except (ValueError, KeyError):
+            errors.append("Vehicle Year must be a valid year or 'Real Estate'.")
 
     if errors:
         for error in errors:
