@@ -1,6 +1,6 @@
 const modelsByMake = {
                 "Freightliner": [
-                    "Cascadia 126", "Cascadia 125", "Cascadia 116", "Columbia", "Coronado", "Century", "M2 106", "M2 112", "FLD120", "FL70", "FL80"
+                    "Cascadia 126", "Cascadia 125", "Cascadia 116", "Columbia", "Coronado", "Century", "M2 106", "M2 112", "FLD120", "FL70", "FL80", "MT55G", "MT45", "MT55"
                 ],
                 "Peterbilt": [
                     "579", "389", "379", "567", "386", "337", "348", "367"
